@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Частный учебный центр — современные курсы, сильные преподаватели и удобный формат обучения.">
+<title>EDUORA — Частный учебный центр</title>
+<style>
+:root{
+  --bg:#e0e5ec;
+  --text:#263142;
+  --muted:#687386;
+  --accent:#5b63f6;
+  --accent-dark:#454dd8;
+  --white:#f8faff;
+  --shadow-light:rgba(255,255,255,.9);
+  --shadow-dark:rgba(163,177,198,.68);
+  --radius:28px;
+  --raised:-8px -8px 18px var(--shadow-light),8px 8px 18px var(--shadow-dark);
+  --raised-sm:-5px -5px 12px var(--shadow-light),5px 5px 12px var(--shadow-dark);
+  --pressed:inset -6px -6px 12px var(--shadow-light),inset 6px 6px 12px var(--shadow-dark);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.6;
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+:focus-visible{
+  outline:3px solid rgba(91,99,246,.55);
+  outline-offset:4px;
+}
+.container{width:min(1180px,calc(100% - 40px));margin:auto}
+section{padding:105px 0}
+.surface{background:var(--bg);box-shadow:var(--raised);border-radius:var(--radius)}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  color:var(--accent);font-weight:800;font-size:.78rem;
+  letter-spacing:.12em;text-transform:uppercase;
+}
+.eyebrow::before{content:"";width:22px;height:3px;background:var(--accent);border-radius:99px}
+h1,h2,h3,p{margin-top:0}
+h1{font-size:clamp(3rem,7vw,6.6rem);line-height:.93;letter-spacing:-.065em;margin:22px 0}
+h2{font-size:clamp(2rem,4vw,3.35rem);line-height:1;letter-spacing:-.04em;margin:15px 0 20px}
+h3{line-height:1.1}
+.lead{font-size:1.08rem;color:var(--muted);max-width:650px}
+.small{font-size:.9rem;color:var(--muted)}
+.btn{
+  border:0;background:var(--bg);color:var(--text);border-radius:18px;
+  padding:15px 22px;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-weight:800;box-shadow:var(--raised-sm);transition:.2s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{box-shadow:var(--pressed);transform:none}
+.btn.primary{background:var(--accent);color:#fff;box-shadow:6px 6px 14px rgba(91,99,246,.28),-5px -5px 12px rgba(255,255,255,.75)}
+.btn.primary:hover{background:var(--accent-dark)}
+.btn.primary:active{box-shadow:inset 5px 5px 12px rgba(45,52,170,.4),inset -5px -5px 12px rgba(130,136,255,.35)}
+/* Header */
+header{
+  position:sticky;top:0;z-index:20;background:rgba(224,229,236,.9);
+  backdrop-filter:blur(16px);padding:16px 0;
+}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-weight:950;font-size:1.25rem;letter-spacing:-.05em}
+.logo span{color:var(--accent)}
+.navlinks{display:flex;gap:27px;color:var(--muted);font-size:.92rem;font-weight:700}
+.navlinks a:hover{color:var(--accent)}
+.menu{display:none}
+/* Hero */
+.hero{padding:82px 0 90px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:55px;align-items:center}
+.hero-copy .lead{font-size:1.2rem}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin:30px 0}
+.stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.stat{padding:18px 22px;border-radius:20px;box-shadow:var(--raised-sm);min-width:130px}
+.stat strong{display:block;font-size:1.5rem}
+.stat span{color:var(--muted);font-size:.78rem}
+.hero-card{padding:32px;min-height:440px;position:relative;overflow:hidden}
+.hero-card:after{
+  content:"";position:absolute;width:280px;height:280px;border-radius:50%;
+  background:var(--accent);opacity:.12;right:-100px;top:-90px;
+}
+.schedule{display:grid;gap:14px;margin-top:20px}
+.schedule-row{display:grid;grid-template-columns:72px 1fr auto;gap:12px;align-items:center;padding:15px;border-radius:18px;box-shadow:var(--raised-sm)}
+.pill{font-size:.75rem;font-weight:800;padding:6px 10px;border-radius:10px;background:rgba(91,99,246,.1);color:var(--accent)}
+/* About */
+.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.feature{padding:28px;border-radius:24px;box-shadow:var(--raised-sm)}
+.icon{width:48px;height:48px;display:grid;place-items:center;border-radius:16px;box-shadow:var(--raised-sm);color:var(--accent);font-weight:900;margin-bottom:20px}
+/* Courses */
+.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:35px}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.filter{
+  border:0;background:var(--bg);color:var(--muted);padding:12px 17px;border-radius:15px;
+  box-shadow:var(--raised-sm);font-weight:800;transition:.2s
+}
+.filter.active,.filter:active{color:var(--accent);box-shadow:var(--pressed)}
+.course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.course-card{padding:27px;min-height:300px;display:flex;flex-direction:column;box-shadow:var(--raised-sm);border-radius:26px}
+.course-top{display:flex;justify-content:space-between;gap:12px;align-items:start}
+.course-card h3{font-size:1.35rem;margin:18px 0 8px}
+.course-card p{color:var(--muted);font-size:.92rem}
+.course-meta{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}
+.tag{padding:7px 10px;border-radius:10px;background:rgba(104,115,134,.09);font-size:.75rem;color:var(--muted);font-weight:750}
+.course-bottom{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.price{font-size:1.25rem;font-weight:900}
+.course-card.hidden{display:none}
+/* Teachers */
+.teachers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.teacher{padding:25px;text-align:center}
+.avatar{
+  width:120px;height:120px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;
+  box-shadow:var(--raised);font-size:2rem;font-weight:900;color:var(--accent)
+}
+.teacher p{color:var(--muted);font-size:.9rem}
+.teacher .specialty{color:var(--accent);font-weight:800;font-size:.8rem}
+/* FAQ */
+.faq{max-width:850px;margin:auto;display:grid;gap:15px}
+.faq-item{box-shadow:var(--raised-sm);border-radius:22px;overflow:hidden}
+.faq-q{
+  width:100%;border:0;background:transparent;color:var(--text);padding:22px 25px;
+  display:flex;justify-content:space-between;gap:20px;text-align:left;font-weight:850
+}
+.faq-q span:last-child{color:var(--accent);font-size:1.3rem}
+.faq-a{display:none;padding:0 25px 23px;color:var(--muted)}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .faq-q span:last-child{transform:rotate(45deg)}
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:25px}
+.contact-info{padding:34px}
+.contact-list{display:grid;gap:14px;margin-top:25px}
+.contact-line{padding:17px 20px;border-radius:18px;box-shadow:var(--pressed)}
+.form{padding:34px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.field{display:grid;gap:8px;margin-bottom:16px}
+.field.full{grid-column:1/-1}
+label{font-size:.78rem;font-weight:850;color:var(--muted)}
+input,textarea,select{
+  width:100%;border:0;background:var(--bg);color:var(--text);border-radius:17px;padding:15px 17px;
+  box-shadow:var(--pressed);outline:none;
+}
+textarea{min-height:135px;resize:vertical}
+input:focus,textarea:focus,select:focus{box-shadow:var(--pressed);outline:3px solid rgba(91,99,246,.28);outline-offset:2px}
+footer{padding:40px 0 55px;color:var(--muted)}
+.footer{display:flex;justify-content:space-between;gap:20px;align-items:center}
+/* Toast */
+.toast{
+  position:fixed;right:25px;bottom:25px;z-index:50;max-width:360px;padding:17px 20px;
+  background:var(--bg);border-radius:18px;box-shadow:var(--raised);transform:translateY(150px);
+  opacity:0;transition:.3s;font-weight:750
+}
+.toast.show{transform:translateY(0);opacity:1}
+@media(max-width:900px){
+  .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+  .course-grid,.teachers{grid-template-columns:1fr 1fr}
+  .navlinks{display:none}.menu{display:block}
+  .navlinks.open{display:flex;position:absolute;left:20px;right:20px;top:75px;padding:22px;background:var(--bg);box-shadow:var(--raised);border-radius:22px;flex-direction:column}
+}
+@media(max-width:620px){
+  .container{width:min(100% - 26px,1180px)}
+  section{padding:75px 0}
+  .hero{padding:55px 0 65px}
+  h1{font-size:3.5rem}
+  .course-grid,.teachers,.about-features,.form-grid{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .section-head{display:block}
+  .hero-card{min-height:auto;padding:24px}
+  .stats{display:grid;grid-template-columns:1fr 1fr}
+  .footer{flex-direction:column;align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="logo" href="#top">EDU<span>ORA</span></a>
+    <nav class="navlinks" id="navLinks">
+      <a href="#about">О нас</a>
+      <a href="#courses">Направления</a>
+      <a href="#teachers">Преподаватели</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+    <button class="btn menu" id="menuBtn" aria-label="Открыть меню">☰</button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Частный учебный центр</span>
+      <h1>Учись.<br><span style="color:var(--accent)">Расти.</span><br>Достигай.</h1>
+      <p class="lead">Практические знания, сильные преподаватели и среда, в которой хочется развиваться. Подбираем обучение под вашу цель, а не наоборот.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#courses">Выбрать курс →</a>
+        <a class="btn" href="#about">Узнать о центре</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>8+</strong><span>направлений</span></div>
+        <div class="stat"><strong>15</strong><span>преподавателей</span></div>
+        <div class="stat"><strong>92%</strong><span>рекомендуют нас</span></div>
+      </div>
+    </div>
+    <div class="hero-card surface">
+      <span class="eyebrow">Расписание сегодня</span>
+      <h3 style="font-size:1.7rem;margin:18px 0 5px">Твои ближайшие занятия</h3>
+      <p class="small">Небольшая демонстрация интерфейса личного кабинета.</p>
+      <div class="schedule">
+        <div class="schedule-row"><b>09:00</b><div><b>English B2</b><br><span class="small">Алина Рахимова</span></div><span class="pill">LIVE</span></div>
+        <div class="schedule-row"><b>13:30</b><div><b>IELTS Intensive</b><br><span class="small">Дмитрий Орлов</span></div><span class="pill">CLASS</span></div>
+        <div class="schedule-row"><b>18:00</b><div><b>Python Start</b><br><span class="small">Тимур Саидов</span></div><span class="pill">LAB</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container about-grid">
+    <div>
+      <span class="eyebrow">О нас</span>
+      <h2>Обучение, которое работает на результат.</h2>
+      <p class="lead">Мы создаём спокойную, современную среду без лишней формальности. Меньше теории ради теории — больше практики, обратной связи и понятного прогресса.</p>
+      <a class="btn" href="#contact" style="margin-top:15px">Задать вопрос</a>
+    </div>
+    <div class="about-features">
+      <article class="feature"><div class="icon">01</div><h3>Малые группы</h3><p class="small">До 10 студентов — преподаватель успевает работать с каждым.</p></article>
+      <article class="feature"><div class="icon">02</div><h3>Практика</h3><p class="small">Задания, проекты, speaking clubs и реальные кейсы вместо пассивного слушания.</p></article>
+      <article class="feature"><div class="icon">03</div><h3>Прогресс</h3><p class="small">Регулярная обратная связь и понятные точки контроля.</p></article>
+      <article class="feature"><div class="icon">04</div><h3>Гибкость</h3><p class="small">Утренние, дневные и вечерние группы, офлайн и онлайн.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="courses">
+  <div class="container">
+    <div class="section-head">
+      <div><span class="eyebrow">Наши направления</span><h2>Найди своё.</h2></div>
+      <p class="lead">Фильтруй направления и сравнивай курсы.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Фильтр курсов">
+      <button class="filter active" data-filter="all">Все</button>
+      <button class="filter" data-filter="languages">Языки</button>
+      <button class="filter" data-filter="it">IT</button>
+      <button class="filter" data-filter="school">Школа</button>
+      <button class="filter" data-filter="business">Бизнес</button>
+    </div>
+    <div class="course-grid" id="courseGrid">
+      <article class="course-card" data-category="languages">
+        <div class="course-top"><span class="pill">ЯЗЫКИ</span><span>→</span></div>
+        <h3>English General</h3><p>Системный английский для общения, работы и путешествий.</p>
+        <div class="course-meta"><span class="tag">A1–C1</span><span class="tag">3× в неделю</span></div>
+        <div class="course-bottom"><span class="price">650 000 сум</span><button class="btn enroll" data-course="English General">Записаться</button></div>
+      </article>
+      <article class="course-card" data-category="languages">
+        <div class="course-top"><span class="pill">ЯЗЫКИ</span><span>→</span></div>
+        <h3>IELTS Intensive</h3><p>Интенсивная подготовка с пробными экзаменами и разбором ошибок.</p>
+        <div class="course-meta"><span class="tag">6–8 недель</span><span class="tag">IELTS</span></div>
+        <div class="course-bottom"><span class="price">850 000 сум</span><button class="btn enroll" data-course="IELTS Intensive">Записаться</button></div>
+      </article>
+      <article class="course-card" data-category="it">
+        <div class="course-top"><span class="pill">IT</span><span>→</span></div>
+        <h3>Python Start</h3><p>Первые программы, алгоритмы и проекты с нуля.</p>
+        <div class="course-meta"><span class="tag">Beginner</span><span class="tag">Проект</span></div>
+        <div class="course-bottom"><span class="price">750 000 сум</span><button class="btn enroll" data-course="Python Start">Записаться</button></div>
+      </article>
+      <article class="course-card" data-category="it">
+        <div class="course-top"><span class="pill">IT</span><span>→</span></div>
+        <h3>Web Development</h3><p>HTML, CSS, JavaScript и создание настоящих веб-проектов.</p>
+        <div class="course-meta"><span class="tag">HTML/CSS/JS</span><span class="tag">Практика</span></div>
+        <div class="course-bottom"><span class="price">900 000 сум</span><button class="btn enroll" data-course="Web Development">Записаться</button></div>
+      </article>
+      <article class="course-card" data-category="school">
+        <div class="course-top"><span class="pill">ШКОЛА</span><span>→</span></div>
+        <h3>Математика</h3><p>Укрепляем базу, закрываем пробелы и готовимся к экзаменам.</p>
+        <div class="course-meta"><span class="tag">5–11 класс</span><span class="tag">Группы</span></div>
+        <div class="course-bottom"><span class="price">550 000 сум</span><button class="btn enroll" data-course="Математика">Записаться</button></div>
+      </article>
+      <article class="course-card" data-category="business">
+        <div class="course-top"><span class="pill">БИЗНЕС</span><span>→</span></div>
+        <h3>Business English</h3><p>Переговоры, презентации, письма и профессиональная лексика.</p>
+        <div class="course-meta"><span class="tag">B1–C1</span><span class="tag">Практика</span></div>
+        <div class="course-bottom"><span class="price">800 000 сум</span><button class="btn enroll" data-course="Business English">Записаться</button></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="teachers">
+  <div class="container">
+    <div class="section-head">
+      <div><span class="eyebrow">Наши преподаватели</span><h2>Люди, у которых хочется учиться.</h2></div>
+      <p class="lead">Экспертиза + человеческий подход.</p>
+    </div>
+    <div class="teachers">
+      <article class="teacher surface"><div class="avatar">AR</div><span class="specialty">ENGLISH • IELTS</span><h3>Алина Рахимова</h3><p>IELTS 8.5 · 7 лет преподавания · 1 200+ студентов</p></article>
+      <article class="teacher surface"><div class="avatar">DO</div><span class="specialty">IT • DEVELOPMENT</span><h3>Дмитрий Орлов</h3><p>Senior Developer · 9 лет в IT · практические проекты</p></article>
+      <article class="teacher surface"><div class="avatar">TS</div><span class="specialty">PYTHON • DATA</span><h3>Тимур Саидов</h3><p>Data Engineer · Python · наставник начинающих разработчиков</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:40px"><span class="eyebrow">FAQ</span><h2>Частые вопросы</h2></div>
+    <div class="faq">
+      <div class="faq-item"><button class="faq-q">Можно ли начать с нуля?<span>+</span></button><div class="faq-a">Да. Для каждого направления есть группы начального уровня. Перед стартом можно пройти короткое тестирование.</div></div>
+      <div class="faq-item"><button class="faq-q">Есть ли пробное занятие?<span>+</span></button><div class="faq-a">Да, для ряда программ доступно пробное занятие или диагностическая консультация.</div></div>
+      <div class="faq-item"><button class="faq-q">Можно ли заниматься онлайн?<span>+</span></button><div class="faq-a">Да. Онлайн-группы проходят в том же расписании, а материалы и домашние задания доступны в цифровом формате.</div></div>
+      <div class="faq-item"><button class="faq-q">Как выбрать подходящий курс?<span>+</span></button><div class="faq-a">Оставьте заявку. Администратор уточнит цель, текущий уровень, удобное расписание и предложит подходящую группу.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container contact-grid">
+    <div class="contact-info surface">
+      <span class="eyebrow">Обратная связь</span>
+      <h2>Есть вопрос?</h2>
+      <p class="lead">Оставьте контакты — мы свяжемся с вами и поможем выбрать программу.</p>
+      <div class="contact-list">
+        <div class="contact-line"><b>Телефон</b><br><span class="small">+998 90 123 45 67</span></div>
+        <div class="contact-line"><b>Telegram</b><br><span class="small">@eduora_center</span></div>
+        <div class="contact-line"><b>Адрес</b><br><span class="small">Ташкент, центр города</span></div>
+      </div>
+    </div>
+    <form class="form surface" id="contactForm">
+      <div class="form-grid">
+        <div class="field"><label for="name">ИМЯ</label><input id="name" required placeholder="Ваше имя"></div>
+        <div class="field"><label for="phone">ТЕЛЕФОН</label><input id="phone" required placeholder="+998 __ ___ __ __"></div>
+        <div class="field full"><label for="course">ИНТЕРЕСУЕТ</label>
+          <select id="course"><option>Выберите направление</option><option>English General</option><option>IELTS Intensive</option><option>Python Start</option><option>Web Development</option><option>Математика</option><option>Business English</option></select>
+        </div>
+        <div class="field full"><label for="message">СООБЩЕНИЕ</label><textarea id="message" placeholder="Например: хочу узнать расписание вечерних групп"></textarea></div>
+      </div>
+      <button class="btn primary" style="width:100%" type="submit">Отправить заявку →</button>
+      <p class="small" style="margin:14px 0 0">Нажимая кнопку, вы соглашаетесь на обработку контактных данных.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer">
+    <div><a class="logo" href="#top">EDU<span>ORA</span></a><br><span class="small">Частный учебный центр</span></div>
+    <span>© 2026 EDUORA. Все права защищены.</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const nav = document.getElementById('navLinks');
+document.getElementById('menuBtn').addEventListener('click',()=>nav.classList.toggle('open'));
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+
+const filters=document.querySelectorAll('.filter');
+const cards=document.querySelectorAll('.course-card');
+filters.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    filters.forEach(x=>x.classList.remove('active'));
+    btn.classList.add('active');
+    const f=btn.dataset.filter;
+    cards.forEach(card=>card.classList.toggle('hidden',f!=='all' && card.dataset.category!==f));
+  });
+});
+
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>q.parentElement.classList.toggle('open'));
+});
+
+const toast=document.getElementById('toast');
+function showToast(msg){
+  toast.textContent=msg;toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),3500);
+}
+document.querySelectorAll('.enroll').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.getElementById('course').value=btn.dataset.course;
+    document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+    setTimeout(()=>document.getElementById('name').focus(),500);
+  });
+});
+document.getElementById('contactForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const name=document.getElementById('name').value.trim();
+  showToast(`Спасибо, ${name || 'ваша заявка'}! Мы свяжемся с вами.`);
+  e.target.reset();
+});
+</script>
+</body>
+</html>
